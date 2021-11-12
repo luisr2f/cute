@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { Dispatch, useEffect, useState } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import {
     View,
     Text,
@@ -16,15 +17,64 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 
-const List = ({ navigation }) => {
+import { connect } from "react-redux";
+import { getNewsListRequestAction } from "../_store/newsList/actionCreators";
+import {
+    NEWS_LIST,
+} from "../_store/newsList/actionTypes";
+
+
+const List = ({ //: React.FC<Props>
+
+
+    isLoading,
+    error,
+    getNewsListRequestAction,
+    response,
+
+
+}) => {
+
+
+    useEffect(() => {
+        getNewsListRequestAction({});
+    }, []);
+
+
+
+
+
     return (
-        <Button
-            title="Go to detail"
-            onPress={() =>
-                navigation.navigate('Detail', { item: 'item' })
-            }
-        />
+        <>
+            <Text>{JSON.stringify(response)}</Text>
+        </>
     );
 };
 
-export default List;
+
+
+//export default List;
+
+
+
+
+const mapStateToProps = (state) => {
+    return {
+        isLoading: state.isLoading[NEWS_LIST],
+        error: state.error[NEWS_LIST],
+        response: state.newsListState.result,
+
+
+
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getNewsListRequestAction: (query) => {
+            dispatch(getNewsListRequestAction(query));
+        },
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);
