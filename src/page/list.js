@@ -10,10 +10,20 @@ import {
     Dimensions,
     Platform,
     Modal,
-    Button,
+    StyleSheet,
+    FlatList,
 } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+import {
+    Card,
+    Title,
+    Paragraph,
+    Button,
+    Icon,
+} from 'react-native-paper';
 
 
 
@@ -24,7 +34,10 @@ import {
 } from "../_store/newsList/actionTypes";
 
 
-const List = ({ //: React.FC<Props>
+import { s } from "../_global/styleGlobal";
+
+
+const List = ({
 
 
     isLoading,
@@ -45,9 +58,41 @@ const List = ({ //: React.FC<Props>
 
 
     return (
-        <>
-            <Text>{JSON.stringify(response)}</Text>
-        </>
+        <View>
+
+
+
+
+
+
+            <FlatList
+                contentContainerStyle={s.flatList}
+                data={response?.articles}
+                renderItem={({ item, index }) => (
+                    <Card key={index} item={item} onPress={() => { Alert.alert('test') }}>
+                        <Card.Cover source={{ uri: item.urlToImage }} />
+                        <Card.Actions style={s.cardAction}>
+                            <Text style={s.txtDate}>Leer más</Text>
+                            <Text >star</Text>
+                        </Card.Actions>
+                        <Card.Content>
+                            <Title>{item.title}</Title>
+                            <Paragraph>{item.description}</Paragraph>
+                        </Card.Content>
+                        <Card.Actions style={{ alignSelf: "flex-end" }}>
+                            <TouchableOpacity style={s.btn} activeOpacity={.8} onPress={() => { }}>
+                                <Text style={s.btnTxt}>Leer más</Text></TouchableOpacity>
+                        </Card.Actions>
+                    </Card>
+
+                )}
+                ItemSeparatorComponent={() => { return (<View style={{height: 20}} />) }}
+            />
+
+
+
+            <Text>{/*JSON.stringify(response)*/}</Text>
+        </View>
     );
 };
 
