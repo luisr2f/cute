@@ -17,7 +17,7 @@ export const s = StyleSheet.create({
   infoDateCtn: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     paddingHorizontal: 18,
   },
   btn: {

@@ -28,6 +28,7 @@ import {
     Icon,
 } from 'react-native-paper';
 
+import Favorite from "./_component/favorite/favorite";
 
 
 const Detail = ({ navigation, route }) => {
@@ -46,7 +47,9 @@ const Detail = ({ navigation, route }) => {
             <ScrollView style={s.scrll} keyboardShouldPersistTaps='handled'>
                 <View style={[s.infoDateCtn, { paddingHorizontal: 0, paddingBottom: 12, }]}>
                     <Text style={s.txtSec}>{moment(item.publishedAt).format("DD / MMMM / YYYY")}</Text>
-                    <Text >star</Text>
+                   
+                    <Favorite item={item} />
+                   
                 </View >
 
                 <Title>{item.title}</Title>
@@ -58,10 +61,11 @@ const Detail = ({ navigation, route }) => {
                     <Text style={s.txtSec}>{item.author}</Text>
                 }
 
-                <Text style={s.p}>{item.content}</Text>
-
+                {item.content && item.content != '' &&
+                    <Text style={s.p}>{item.content}</Text>
+                }
                 <View style={s.detailBtn}>
-                    <TouchableOpacity style={[s.btn, { paddingHorizontal: 0 }]} activeOpacity={.8} onPress={async () => {
+                    <TouchableOpacity style={[s.btn, { paddingHorizontal: 6 }]} activeOpacity={.8} onPress={async () => {
                         const supported = await Linking.canOpenURL(item.url);
                         if (supported) {
                             await Linking.openURL(item.url);

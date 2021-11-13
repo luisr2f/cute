@@ -39,6 +39,8 @@ import {
 
 import { s } from "../_global/styleGlobal";
 
+import Favorite from "./_component/favorite/favorite";
+
 
 const List = ({
 
@@ -72,11 +74,11 @@ const List = ({
                 contentContainerStyle={s.flatList}
                 data={response?.articles}
                 renderItem={({ item, index }) => (
-                    <Card key={index} item={item} onPress={() => { Alert.alert('test') }}>
+                    <Card key={index} item={item} >
                         <Card.Cover source={{ uri: item.urlToImage }} />
                         <Card.Actions style={s.infoDateCtn}>
                             <Text style={s.txtSec}>{moment(item.publishedAt).format("DD / MMMM / YYYY")}</Text>
-                            <Text >star</Text>
+                            <Favorite item={item} />
                         </Card.Actions>
                         <Card.Content>
                             <Title>{item.title}</Title>
