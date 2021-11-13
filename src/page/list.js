@@ -25,6 +25,9 @@ import {
     Icon,
 } from 'react-native-paper';
 
+import moment from "moment";
+import "moment/locale/es";
+
 
 
 import { connect } from "react-redux";
@@ -44,7 +47,7 @@ const List = ({
     error,
     getNewsListRequestAction,
     response,
-
+    navigation,
 
 }) => {
 
@@ -71,16 +74,16 @@ const List = ({
                 renderItem={({ item, index }) => (
                     <Card key={index} item={item} onPress={() => { Alert.alert('test') }}>
                         <Card.Cover source={{ uri: item.urlToImage }} />
-                        <Card.Actions style={s.cardAction}>
-                            <Text style={s.txtDate}>Leer más</Text>
+                        <Card.Actions style={s.infoDateCtn}>
+                            <Text style={s.txtSec}>{moment(item.publishedAt).format("DD / MMMM / YYYY")}</Text>
                             <Text >star</Text>
                         </Card.Actions>
                         <Card.Content>
                             <Title>{item.title}</Title>
-                            <Paragraph>{item.description}</Paragraph>
+                            <Paragraph style={s.p}>{item.description}</Paragraph>
                         </Card.Content>
                         <Card.Actions style={{ alignSelf: "flex-end" }}>
-                            <TouchableOpacity style={s.btn} activeOpacity={.8} onPress={() => { }}>
+                            <TouchableOpacity style={s.btn} activeOpacity={.8} onPress={() => { navigation.navigate('Detail', {item }) }}>
                                 <Text style={s.btnTxt}>Leer más</Text></TouchableOpacity>
                         </Card.Actions>
                     </Card>

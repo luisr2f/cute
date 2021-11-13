@@ -6,6 +6,9 @@ const Colors = {
     primaryMiddle: '#54CF6F',
     secondary: '#3B3DC3',
 
+    gray: '#919195',
+    white: '#FFFFFF'
+
   
   }
   export default Colors;
