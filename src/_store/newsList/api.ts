@@ -1,4 +1,4 @@
-import { ResultApiOur } from "../../_model";
+import { Article } from "../../_model";
 
 import { getRequest } from "../../_network/api";
 
@@ -8,7 +8,7 @@ import { Network } from "../../_global/constant";
 
 
 
-export async function getNewsList(): Promise<ResultApiOur|undefined> {
+export async function getNewsList(): Promise<Article|undefined> {
 
  //?country=cu&language=es&apiKey=33b6de14b85345a8b0142a85128ffe59
 

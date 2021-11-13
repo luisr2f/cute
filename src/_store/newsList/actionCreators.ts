@@ -1,4 +1,4 @@
-import { ResultApiOur } from "../../_model";
+import { Article } from "../../_model";
 import * as actions from "./actionTypes";
 
 export function getNewsListRequestAction(): actions.NewsListRequestAction {
@@ -10,7 +10,7 @@ export function getNewsListRequestAction(): actions.NewsListRequestAction {
 
 
 export function getNewsListSuccessAction(
-  data: ResultApiOur
+  data: Article
 ): actions.NewsListSuccessAction {
   return {
     type: actions.NEWS_LIST_SUCCESS,

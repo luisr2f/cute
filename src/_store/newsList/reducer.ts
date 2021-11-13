@@ -1,8 +1,8 @@
-import { ResultApiOur } from "../../_model";
+import { Article } from "../../_model";
 import { NewsListActions, NEWS_LIST_INITIAL, NEWS_LIST_SUCCESS } from "./actionTypes";
 
 export interface NewsListState {
-  result: ResultApiOur | null;
+  result: Article | null;
 }
 
 const initialState: NewsListState = {

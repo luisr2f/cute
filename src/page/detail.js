@@ -54,10 +54,11 @@ const Detail = ({ navigation, route }) => {
 
                 <Title>{item.title}</Title>
 
-
+                {item.urlToImage != '' &&
                 <Image style={s.detailImg} source={{ uri: item.urlToImage }} />
+                }
 
-                {item.author && item.author != '' &&
+                {item.author != '' &&
                     <Text style={s.txtSec}>{item.author}</Text>
                 }
 

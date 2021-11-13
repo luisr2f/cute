@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { ResultApiOur } from "../../_model";
+import { Article } from "../../_model";
 
 import {
   getNewsListFailureAction,
@@ -16,7 +16,7 @@ function* handleResponse(action: NewsListRequestAction) {
     const { data } = yield call(getNewsList);
 
     const response = data.articles;
-    let result = [];
+    let result: Article = [];
 
     let items = yield call(AsyncStorage.getItem, "@favorite");
     if (items != null) {
@@ -30,14 +30,30 @@ function* handleResponse(action: NewsListRequestAction) {
       });
       response.map((item) => {
         if (!urls.includes(item.url)) {
-          result.push(item);
+          result.push({
+            "author": item.author ?? '',
+            "title": item.title ?? '',
+            "url": item.url ?? '',
+            "urlToImage": item.urlToImage ?? '',
+            "content": item.content ?? '',
+            "publishedAt": item.publishedAt ?? '',
+            "description": item.description ?? '',
+        });
         }
       });
 
       
     } else {
       response.map((item) => {
-          result.push(item);
+          result.push({
+            "author": item.author ?? '',
+            "title": item.title ?? '',
+            "url": item.url ?? '',
+            "urlToImage": item.urlToImage ?? '',
+            "content": item.content ?? '',
+            "publishedAt": item.publishedAt ?? '',
+            "description": item.description ?? '',
+        });
       });
     }
 

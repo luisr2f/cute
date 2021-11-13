@@ -31,7 +31,6 @@ import moment from "moment";
 import "moment/locale/es";
 
 
-
 import { connect } from "react-redux";
 import { getNewsListRequestAction, getNewsListInitialAction } from "../_store/newsList/actionCreators";
 import {

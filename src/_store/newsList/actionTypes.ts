@@ -1,4 +1,4 @@
-import { ResultApiOur } from "../../_model";
+import { Article } from "../../_model";
 
 export const NEWS_LIST = "actionTypes/NEWS_LIST";
 
@@ -10,7 +10,7 @@ export interface NewsListRequestAction {
 export const NEWS_LIST_SUCCESS = "actionTypes/NEWS_LIST_SUCCESS";
 export interface NewsListSuccessAction {
   type: typeof NEWS_LIST_SUCCESS;
-  data: ResultApiOur;
+  data: Article;
 }
 
 export const NEWS_LIST_FAILURE = "actionTypes/NEWS_LIST_FAILURE";
