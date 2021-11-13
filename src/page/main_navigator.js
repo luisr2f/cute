@@ -16,10 +16,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import ListScreen from "./list";
 import DetailScreen from "./detail";
+import ColorPropType from 'react-native/Libraries/DeprecatedPropTypes/DeprecatedColorPropType';
 
 const Stack = createNativeStackNavigator();
 
-
+import Col from '../_global/colors';
 
 
 
@@ -31,8 +32,15 @@ const CuteStack = () => {
                     title: 'Titulares Principales',
                     headerTitleAlign: 'center',
                     headerTitleStyle: { fontWeight: 'bold', fontSize: 22, },
+                    headerStyle: { backgroundColor: Col.secondary },
+                    headerTitleStyle: { color: Col.white },
                 }} />
-                <Stack.Screen name="Detail" component={DetailScreen} />
+                <Stack.Screen name="Detail" component={DetailScreen} options={{
+                    title: '',
+                    headerStyle: { backgroundColor: Col.secondary },
+                    headerTitleStyle: { color: Col.white },
+                    headerTintColor: Col.white,
+                }}  />
             </Stack.Navigator>
         </NavigationContainer>
     );

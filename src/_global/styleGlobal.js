@@ -56,6 +56,19 @@ export const s = StyleSheet.create({
   },
   detailBtn: {
     paddingVertical: 20,
+  },
+
+
+  aiCnt: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  noResult: {
+    textAlign: 'center',
+    paddingVertical: 40,
   }
 
 });

@@ -6,7 +6,12 @@ import Col from '../../../_global/colors';
 const c = StyleSheet.create({
 
   btnFav: {
-    padding: 4,
+    height: 50,
+    width: 50,
+    marginRight: -12,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   iconActive: {
     color: Col.yellow,

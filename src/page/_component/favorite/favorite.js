@@ -1,4 +1,5 @@
 import React, { Dispatch, useEffect, useState } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import {
     View,
     Text,
@@ -23,8 +24,7 @@ import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import Col from '../../../_global/colors';
 
 const Favorite = ({
-    navigation,
-    route,
+
     item,
 }) => {
 
@@ -36,17 +36,20 @@ const Favorite = ({
 
     const { getItem, setItem } = useAsyncStorage('@favorite');
 
+    const navigation = useNavigation();
 
 
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            readStorage();
+        });
+        return unsubscribe;
+    }, [navigation]);
 
 
 
     useEffect(() => {
-
-
         readStorage();
-
-
     }, [item]);
 
 
@@ -72,9 +75,9 @@ const Favorite = ({
 
                 if (urls.includes(item.url)) {
                     setActive(true);
-                  } else {
+                } else {
                     setActive(false);
-                  }
+                }
 
                 setFav(obj);
                 setIsLoading(false);
@@ -118,7 +121,6 @@ const Favorite = ({
                     "content": item.content ?? '',
                     "publishedAt": item.publishedAt ?? '',
                     "description": item.description ?? '',
-
                 }]
             }
 
@@ -126,8 +128,6 @@ const Favorite = ({
 
             await setItem(JSON.stringify(temp));
 
-
-            //await setItem(JSON.stringify(fav.push(item.url.toString())));
             readStorage();
         } catch (e) {
             Alert.alert('Error', e);
@@ -137,23 +137,14 @@ const Favorite = ({
     }
 
     return (
-
         <>
-            {isLoading ?
-                <ActivityIndicator style={c.ai} color={Col.yellow} size="small" />
-                :
-                <>
-                    <TouchableOpacity style={c.btnFav} activeOpacity={.8} onPress={actionFav}>
-                        {active ?
-                            <IconFontAwesome style={c.iconActive} name="star" size={24} />
-                            :
-                            <IconFontAwesome style={c.icon} name="star-o" size={24} />
-                        }
-                    </TouchableOpacity>
-                </>
-
-            }
-
+            <TouchableOpacity disabled={isLoading} style={c.btnFav} activeOpacity={.8} onPress={actionFav}>
+                {active ?
+                    <IconFontAwesome style={c.iconActive} name="star" size={24} />
+                    :
+                    <IconFontAwesome style={c.icon} name="star-o" size={24} />
+                }
+            </TouchableOpacity>
         </>
     );
 
