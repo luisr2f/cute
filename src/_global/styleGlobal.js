@@ -42,7 +42,6 @@ export const s = StyleSheet.create({
   scrll: {
     paddingHorizontal: 20,
     paddingTop: 20,
-    paddingBottom: 50,
   },
 
 
@@ -69,6 +68,10 @@ export const s = StyleSheet.create({
   noResult: {
     textAlign: 'center',
     paddingVertical: 40,
+  },
+
+  spaceB: {
+    height: 60,
   }
 
 });

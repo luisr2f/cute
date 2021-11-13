@@ -41,30 +41,37 @@ const Detail = ({ navigation, route }) => {
     }, [route.params]);
 
 
+    //return (<><Text>{JSON.stringify(item)}</Text></>);
+
 
     return (
         <View style={s.ctn}>
             <ScrollView style={s.scrll} keyboardShouldPersistTaps='handled'>
                 <View style={[s.infoDateCtn, { paddingHorizontal: 0, paddingBottom: 12, }]}>
                     <Text style={s.txtSec}>{moment(item.publishedAt).format("DD / MMMM / YYYY")}</Text>
-                   
+
                     <Favorite item={item} />
-                   
+
                 </View >
 
                 <Title>{item.title}</Title>
 
-                {item.urlToImage != '' &&
-                <Image style={s.detailImg} source={{ uri: item.urlToImage }} />
-                }
-
+                
                 {item.author != '' &&
                     <Text style={s.txtSec}>{item.author}</Text>
                 }
 
-                {item.content && item.content != '' &&
+
+                {item.urlToImage != '' &&
+                    <Image style={s.detailImg} source={{ uri: item.urlToImage }} />
+                }
+
+
+                {item.content != '' &&
                     <Text style={s.p}>{item.content}</Text>
                 }
+
+
                 <View style={s.detailBtn}>
                     <TouchableOpacity style={[s.btn, { paddingHorizontal: 6 }]} activeOpacity={.8} onPress={async () => {
                         const supported = await Linking.canOpenURL(item.url);
@@ -77,6 +84,9 @@ const Detail = ({ navigation, route }) => {
                         <Text style={s.btnTxt}>Ver el artículo completo en la fuente </Text>
                     </TouchableOpacity>
                 </View>
+
+
+                <View style={s.spaceB} />
 
             </ScrollView>
         </View>
